@@ -1,0 +1,17 @@
+[project]
+name = "streaming_realtime_similarity"
+version = "0.1.0"
+description = "Realtime-ish similarity scoring service (TF-IDF + cosine) with CLI + artifacts."
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.0",
+  "scikit-learn>=1.3",
+  "pyarrow>=14.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
