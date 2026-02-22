@@ -1,0 +1,10 @@
+{
+  "reference": "data/reference.csv",
+  "stream": "data/stream_sample.csv",
+  "topk": 3,
+  "max_events": 4,
+  "sleep": 0.0,
+  "out": "outputs/scores.parquet",
+  "log": "outputs/logs/run.log",
+  "min_score": 0.05
+}

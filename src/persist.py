@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import json
 import logging
+from dataclasses import asdict
 from pathlib import Path
 from datetime import datetime, timezone
 import pandas as pd
+
+from src.config import RunConfig
 
 
 def init_run_logger(log_path: Path) -> logging.Logger:
@@ -19,6 +23,13 @@ def init_run_logger(log_path: Path) -> logging.Logger:
         logger.addHandler(fh)
 
     return logger
+
+
+def write_run_config_json(cfg: RunConfig, out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = asdict(cfg)
+    payload["timestamp_utc"] = datetime.now(timezone.utc).isoformat()
+    out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
 def write_scores_parquet(records: list[dict], out_path: Path) -> None:
